@@ -1,0 +1,5 @@
+sentence-transformers
+chromadb
+groq
+python-dotenv
+gradio>=4.0.0
