@@ -19,8 +19,8 @@ This system makes the Bible's perspective on any topic searchable and answerable
 ## Retrieval Approach
 - Embedding model: all-MiniLM-L6-v2 via sentence-transformers (runs locally, no API key needed)
 - Vector store: ChromaDB (runs locally, no account needed)
-- Top-k: 5 chunks retrieved per query
-- Why top-5: Enough to capture the Bible's perspective across multiple books while keeping the context focused. Too few risks missing relevant passages; too many dilutes the response with loosely related content.
+- Top-k: 8 chunks retrieved per query
+- Why top-8: Enough to capture the Bible's perspective across multiple books while keeping the context focused. Too few risks missing relevant passages; too many dilutes the response with loosely related content.
 - Why semantic search: A user asking "how do I deal with worry?" will not use the word "anxiety" but the embedding model understands they mean the same thing. Semantic search finds meaning-matches, not just word-matches.
 - Production tradeoffs: For a production system, a multilingual embedding model would be worth considering since the Bible is read worldwide in many languages. A larger model like text-embedding-3-large would improve accuracy but at higher cost and latency.
 
@@ -42,4 +42,4 @@ This system makes the Bible's perspective on any topic searchable and answerable
 - Gradio interface: I will prompt Claude with the complete pipeline and ask it to wire everything into a Gradio interface with a question input, answer output, and sources display.
 
 ## Architecture
-Document Ingestion (KJV.json) -> Chunking (5 verses, 2 overlap) -> Embedding (all-MiniLM-L6-v2) -> Vector Store (ChromaDB) -> Retrieval (top-5 semantic search) -> Generation (Groq LLaMA) -> Response with citations
+Document Ingestion (KJV.json) -> Chunking (5 verses, 2 overlap) -> Embedding (all-MiniLM-L6-v2) -> Vector Store (ChromaDB) -> Retrieval (top-8 semantic search) -> Generation (Groq LLaMA) -> Response with citations
